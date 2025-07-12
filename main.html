@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dori Hastakala</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/061ebf032a.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <span class="text-xl font-bold">dori hastkala</span>
+        </div>
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="ne1.html" class="flex items-center space-x-1"><i class="fa-solid fa-house"></i><span>Home</span></a>
+          <a href="#" class="flex items-center space-x-1"><i class="fas fa-map-marker-alt"></i><span>Places</span></a>
+          <a href="#" class="flex items-center space-x-1"><i class="fas fa-images"></i><span>Gallery</span></a>
+          <a href="#" class="flex items-center space-x-1"><i class="fas fa-envelope"></i><span>Contact</span></a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button id="menu-btn" class="focus:outline-none">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+      <a href="#" class="block py-2"><i class="fas fa-home"></i> Home</a>
+      <a href="#" class="block py-2"><i class="fas fa-map-marker-alt"></i> Places</a>
+      <a href="#" class="block py-2"><i class="fas fa-images"></i> Gallery</a>
+      <a href="#" class="block py-2"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="h-screen bg-cover bg-center flex items-center justify-center text-white"
+         style="background-image: url('main.jpg.jpeg');">
+  <div class="bg-black bg-opacity-60 p-8 rounded-xl text-center">
+    <h1 class="text-5xl font-bold mb-4">Discover the art of weaving</h1>
+    <p class="text-lg mb-6">Find the product that was made for you and explore, it is made from lots of love and are</p>
+    <a href="#" class="bg-red-400 text-black px-6 py-3 rounded-lg font-semibold">Explore Now</a>
+  </div>
+</section>
+
+
+ <!-- Video Section -->
+<section class="p-8">
+  <h2 class="text-2xl font-bold mb-4">Promotional Video</h2>
+  <video class="w-full max-w-2xl mx-auto rounded-lg" controls>
+    <source src="video.mp4" type="video/mp4">
+    <track src="video.vtt" kind="subtitles" srclang="en" label="English" default>
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+
+
+
+
+
+  <!-- Audio Section -->
+  <section class="p-8">
+    <h2 class="text-2xl font-bold mb-4">Background Music</h2>
+    <audio controls>
+      <source src="song.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </section>
+
+  <!-- API Data Section -->
+  <section class="p-8">
+    <h2 class="text-2xl font-bold mb-4">Explore Our Products</h2>
+    <div id="api-content" class="grid sm:grid-cols-1 md:grid-cols-3 gap-4"></div>
+  </section>
+
+  <!-- Footer with SVG -->
+  <footer class="bg-gray-800 text-white text-center p-6">
+    <svg class="mx-auto w-8 h-8 mb-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z" /></svg>
+    <p>&copy; 2025 Jiya Elza Jabi. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Hamburger toggle
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+           
+    // Fetch API Example 
+    fetch('https://jsonplaceholder.typicode.com/photos?_limit=3') 
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('api-content'); 
+        data.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'bg-white p-4 rounded shadow';
+          card.innerHTML = `<img src="${item.thumbnailUrl}" class="w-full mb-2 rounded"><h3 class="font-bold">${item.title}</h3>`;
+          container.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>

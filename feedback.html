@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback - Dori Hastkala</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Dori Hastkala</h1>
+      <nav>
+        <ul>
+          <li><a href="ne1.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="learn.html">Learn</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Your Feedback</h2>
+    <form id="feedbackForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <textarea id="comment" placeholder="Your Comment" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="feedbackList" class="feedback-list"></div>
+  </main>
+
+  <footer>
+    <p>&copy; Jiya Elza Jabi 28/06/2025</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("feedbackForm");
+      const feedbackList = document.getElementById("feedbackList");
+
+      function displayFeedback() {
+        feedbackList.innerHTML = "";
+        const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+        feedbacks.forEach(({ name, comment }) => {
+          const entry = document.createElement("div");
+          entry.classList.add("feedback-entry");
+          entry.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+          feedbackList.appendChild(entry);
+        });
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const comment = document.getElementById("comment").value.trim();
+
+        if (name && comment) {
+          const feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+          feedbacks.push({ name, comment });
+          localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+          form.reset();
+          displayFeedback();
+        }
+      });
+
+      displayFeedback();
+    });
+  </script>
+</body>
+</html>

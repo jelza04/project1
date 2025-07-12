@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Dori Hastkala</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Dori Hastkala</h1>
+      <nav>
+        <ul>
+          <li><a href="ne1.html">Home</a></li>
+          <li><a href="learn.html">Learn</a></li>
+          <li><a href="feedback.html">Feedback</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>About Dori Hastkala</h2>
+    <div class="flex-row">
+        <div class="img">
+  <img src="d1.jpg" alt="Handmade items" class="flex-grow" />
+  </div>
+    <p class="flex-grow">
+      Dori Hastkala is a platform celebrating handmade goods and the creative spirit.
+      Artists and users alike can engage with crafting culture and learn traditional techniques.
+    </p>
+    </div>
+
+   <h2>Find My Location and mark it on map</h2>
+  <div id="map">
+    <iframe id="google_map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk?output=embed"></iframe>
+  </div>
+  <a href="#" onclick="getLocation()">Get Location</a>
+  <p id="output"></p>
+
+  <script>
+
+    function getLocation() {
+        navigator.geolocation.getCurrentPosition(c);
+        return false;
+    }
+
+    var c=function(pos){
+        var latitude = pos.coords.latitude;
+        var longitude = pos.coords.longitude;
+        var coords = latitude+','+longitude;
+
+        document.getElementById('google_map').setAttribute('src','https://maps.google.co.uk?q='+coords+'&z=60&output=embed')
+    }     
+  </script>
+
+
+
+  </main>
+  <footer>
+    <p>&copy; Jiya Elza Jabi 28/06/2025</p>
+  </footer>
+
+  
+</body>
+</html>
